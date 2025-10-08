@@ -97,9 +97,9 @@ yosys
 Inside the Yosys shell:
 
 ```tcl
-read_verilog /home/jyothirganesh/VSDBabySoC/src/module/vsdbabysoc.v
-read_verilog -I /home/jyothirganesh/VSDBabySoC/src/include /home/jyothirganesh/VSDBabySoC/src/module/rvmyth.v
-read_verilog -I /home/jyothirganesh/VSDBabySoC/src/include /home/jyothirganesh/VSDBabySoC/src/module/clk_gate.v
+read_verilog /home/jyothirganesh/VLSI/VSDBabySoC/src/module/vsdbabysoc.v
+read_verilog -I /home/jyothirganesh/VLSI/VSDBabySoC/src/include /home/jyothirganesh/VLSI/VSDBabySoC/src/module/rvmyth.v
+read_verilog -I /home/jyothirganesh/VLSI/VSDBabySoC/src/include /home/jyothirganesh/VLSI/VSDBabySoC/src/module/clk_gate.v
 ```
 
 📝 **Explanation:**
@@ -114,9 +114,9 @@ read_verilog -I /home/jyothirganesh/VSDBabySoC/src/include /home/jyothirganesh/V
 ### 📚 Step 2: Load Liberty Timing Libraries
 
 ```tcl
-read_liberty -lib /home/jyothirganesh/VSDBabySoC/src/lib/avsdpll.lib
-read_liberty -lib /home/jyothirganesh/VSDBabySoC/src/lib/avsddac.lib
-read_liberty -lib /home/jyothirganesh/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_liberty -lib /home/jyothirganesh/VLSI/VSDBabySoC/src/lib/avsdpll.lib
+read_liberty -lib /home/jyothirganesh/VLSI/VSDBabySoC/src/lib/avsddac.lib
+read_liberty -lib /home/jyothirganesh/VLSI/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 ```
 📝 **Explanation:**
 
@@ -145,7 +145,7 @@ synth -top vsdbabysoc
 * Maps all generic DFFs to actual **standard cell DFFs** from the Sky130 library.
 
 ```tcl
-dfflibmap -liberty /home/jyothirganesh/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+dfflibmap -liberty /home/jyothirganesh/VLSI/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 ```
 <img width="1211" height="726" alt="Image" src="https://github.com/user-attachments/assets/231f28b4-f1b4-4ea7-8b77-98a8fa64161b" />
 
@@ -155,7 +155,7 @@ dfflibmap -liberty /home/jyothirganesh/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_02
 
 ```tcl
 opt
-abc -liberty /home/jyothirganesh/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.lib -script +strash;scorr;ifraig;retime;{D};strash;dch,-f;map,-M,1,{D}
+abc -liberty /home/jyothirganesh/VLSI/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.lib -script +strash;scorr;ifraig;retime;{D};strash;dch,-f;map,-M,1,{D}
 ```
 
 
@@ -203,7 +203,7 @@ stat
 ### 💾 Step 8: Write the Synthesized Netlist
 
 ```tcl
-write_verilog -noattr /home/jyothirganesh/VSDBabySoC/output/post_synth_sim/vsdbabysoc.synth.v
+write_verilog -noattr /home/jyothirganesh/VLSI/VSDBabySoC/src/module/vsdbabysoc.synth.v
 ```
 📝 **Explanation:**
 
@@ -212,18 +212,24 @@ write_verilog -noattr /home/jyothirganesh/VSDBabySoC/output/post_synth_sim/vsdba
 <img width="1214" height="208" alt="Screenshot from 2025-10-05 12-29-44" src="https://github.com/user-attachments/assets/eea41a5b-b2e5-47c2-b1e5-e2055bd14dcf" />
 
 ---
+## Create a directory post_synth_sim in output directorty
+```bash
+mkdir /home/jyothirganesh/VLSI/VSDBabySoC/output/post_synth_sim
+```
+* which directory stores the sythesised netlist (.out file) and simulation output (.vcd file)
 
 ## 🧪 Post-Synthesis Simulation (GLS)
 
 ### 🧰 Step 9: Compile Testbench and Netlist
 
 ```bash
-iverilog -o /home/jyothirganesh/VSDBabySoC/output/post_synth_sim/post_synth_sim.out \
+iverilog -o /home/jyothirganesh/VLSI/VSDBabySoC/output/post_synth_sim/post_synth_sim.out \
 -DPOST_SYNTH_SIM -DFUNCTIONAL -DUNIT_DELAY=#1 \
--I /home/jyothirganesh/VSDBabySoC/src/include \
--I /home/jyothirganesh/VSDBabySoC/src/module \
-/home/jyothirganesh/VSDBabySoC/src/module/testbench.v \
-/home/jyothirganesh/VSDBabySoC/output/post_synth_sim/vsdbabysoc.synth.v
+-I /home/jyothirganesh/VLSI/VSDBabySoC/src/include \
+-I /home/jyothirganesh/VLSI/VSDBabySoC/src/module \
+/home/jyothirganesh/VLSI/VSDBabySoC/src/gls_model/primitives.v \
+/home/jyothirganesh/VLSI/VSDBabySoC/src/gls_model/sky130_fd_sc_hd.v \
+/home/jyothirganesh/VLSI/VSDBabySoC/src/module/testbench.v
 ```
 
 📝 **Explanation:**
@@ -240,15 +246,8 @@ iverilog -o /home/jyothirganesh/VSDBabySoC/output/post_synth_sim/post_synth_sim.
 ### 📂 Step 10: Navigate to Output Directory
 
 ```bash
-cd /home/jyothirganesh/VSDBabySoC/output/post_synth_sim/
+cd /home/jyothirganesh/VLSI/VSDBabySoC/output/post_synth_sim/
 ```
-
-📝 **Explanation:**
-
-* Keeps simulation results organized and easy to access.
-
----
-
 ### ▶️ Step 11: Run the Simulation
 
 ```bash
@@ -273,6 +272,9 @@ gtkwave post_synth_sim.vcd
 
 * Opens GTKWave to visualize signal transitions at gate level.
 * Useful for verifying behavior and timing issues.
+<img width="1854" height="1047" alt="Screenshot from 2025-10-08 15-38-23" src="https://github.com/user-attachments/assets/f7d509c5-623e-4ab0-90e1-7d44c87d8de1" />
+
+<img width="1854" height="1047" alt="Screenshot from 2025-10-08 15-38-46" src="https://github.com/user-attachments/assets/c63f2ffe-ca04-4806-a34c-f5ff30d02d8d" />
 
 ---
 
@@ -290,6 +292,11 @@ gtkwave post_synth_sim.vcd
 ## 🧾 Result Verification
 
 This section confirms that the **Gate-Level Simulation (GLS)** output matches the **Week 2 functional simulation output**.
+The foolowing wave form is **week 2 functional simlation output** i.e **pre_synth_out**
+<img width="1213" height="776" alt="image" src="https://github.com/user-attachments/assets/2d9b83e9-af32-46cc-97b9-3a40723c687e" />
+
+<img width="1203" height="563" alt="image" src="https://github.com/user-attachments/assets/deff8c4c-ba34-4a14-be23-11241a5a4d82" />
+
 
 * ✅ GLS waveform matches the functional simulation output.
 * Key signals verified: **clock**, **reset**, and **RISC-V core outputs**.
