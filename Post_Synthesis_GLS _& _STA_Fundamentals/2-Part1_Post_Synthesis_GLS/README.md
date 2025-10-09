@@ -210,7 +210,10 @@ write_verilog -noattr /home/jyothirganesh/VLSI/VSDBabySoC/src/module/vsdbabysoc.
 * Writes the **final synthesized netlist** to the specified path.
 * `-noattr` removes extra attributes for a clean file.
 <img width="1214" height="208" alt="Screenshot from 2025-10-05 12-29-44" src="https://github.com/user-attachments/assets/eea41a5b-b2e5-47c2-b1e5-e2055bd14dcf" />
-
+## Exit from yosys
+```tcl
+exit
+```
 ---
 ## Create a directory post_synth_sim in output directorty
 ```bash
@@ -227,6 +230,7 @@ iverilog -o /home/jyothirganesh/VLSI/VSDBabySoC/output/post_synth_sim/post_synth
 -DPOST_SYNTH_SIM -DFUNCTIONAL -DUNIT_DELAY=#1 \
 -I /home/jyothirganesh/VLSI/VSDBabySoC/src/include \
 -I /home/jyothirganesh/VLSI/VSDBabySoC/src/module \
+-I /home/jyothirganesh/VLSI/VSDBabySoC/src/gls_model \
 /home/jyothirganesh/VLSI/VSDBabySoC/src/gls_model/primitives.v \
 /home/jyothirganesh/VLSI/VSDBabySoC/src/gls_model/sky130_fd_sc_hd.v \
 /home/jyothirganesh/VLSI/VSDBabySoC/src/module/testbench.v
