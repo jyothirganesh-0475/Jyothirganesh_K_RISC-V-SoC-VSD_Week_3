@@ -31,7 +31,6 @@ STA is essential for achieving **timing closure** before fabrication.
   * **Path-Based Analysis**
 
 -----
------
 
 ## 1. Setup and Hold Checks
 
@@ -52,6 +51,9 @@ In **Static Timing Analysis (STA)**,
 
   * It shows **how much “extra” or “missing” time** exists between these two events.
   * **Slack = Required Time – Arrival Time**
+
+<img width="1914" height="1044" alt="Arrival time" src="https://github.com/user-attachments/assets/f9a97355-3a40-471c-8890-556d542e5172" />
+
 
 ### Types of Slack
 
@@ -115,6 +117,9 @@ In **Static Timing Analysis (STA)**,
 ## 4. Path-Based Analysis
 
   * STA analyzes timing **between startpoints and endpoints** of paths.
+  * 
+![img1](https://github.com/user-attachments/assets/7162ff14-03cf-450d-b330-e2b34a76a48f)
+
 
   * **Types of Timing Paths:**
 
@@ -150,6 +155,8 @@ In **Static Timing Analysis (STA)**,
           * **Start Point:** Latch
           * **End Point:** Latch/FF
           * **Notes:** Paths with level-sensitive latches, includes time borrowing
+
+  ![Image](https://github.com/user-attachments/assets/d2c7844b-d609-4cbb-9445-57cae4d0c4dd)
 
   * **Critical Path:**
 
