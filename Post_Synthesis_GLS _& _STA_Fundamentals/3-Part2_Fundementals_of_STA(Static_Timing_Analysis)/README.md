@@ -12,10 +12,10 @@
 ## 📑 Table of Contents
 
 1. [Introduction](#-introduction)
-2. [Setup and Hold Checks](#-1-setup-and-hold-checks)
-3. [Slack](#-2-slack)
-4. [Clock Definitions](#-3-clock-definitions)
-5. [Path-Based Analysis](#-4-path-based-analysis)
+2. [Setup and Hold Checks](#1-setup-and-hold-checks)
+3. [Slack](#2-slack)
+4. [Clock Definitions](#3-clock-definitions)
+5. [Path-Based Analysis](#4-path-based-analysis)
 
 ---
 
