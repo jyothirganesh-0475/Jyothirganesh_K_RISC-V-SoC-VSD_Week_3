@@ -1,16 +1,15 @@
 # 🧠 Fundamentals of STA (Static Timing Analysis)
-
+---
 ## 📑 Table of Contents
 
-1.  [Introduction](https://www.google.com/search?q=%23-introduction)
-2.  [Key Focus Areas](https://www.google.com/search?q=%23-key-focus-areas)
-3.  [Setup and Hold Checks](https://www.google.com/search?q=%231-setup-and-hold-checks)
-4.  [Slack](https://www.google.com/search?q=%232-slack)
-5.  [Clock Definitions](https://www.google.com/search?q=%233-clock-definitions)
-6.  [Path-Based Analysis](https://www.google.com/search?q=%234-path-based-analysis)
+1. [Introduction](#-introduction)
+2. [Key Focus Areas](#-key-focus-areas)
+3. [Setup and Hold Checks](#-1-setup-and-hold-checks)
+4. [Slack](#-2-slack)
+5. [Clock Definitions](#-3-clock-definitions)
+6. [Path-Based Analysis](#-4-path-based-analysis)
 
------
-
+---
 
 ## 📌 Introduction
 
@@ -34,7 +33,7 @@ STA is essential for achieving **timing closure** before fabrication.
 -----
 -----
 
-## 1\. Setup and Hold Checks
+## 1 Setup and Hold Checks
 
   * **Setup Time:** Minimum time that input data must remain stable *before* the active clock edge to be correctly captured by the flip-flop.
   * **Hold Time:** Minimum time that input data must remain stable *after* the active clock edge to avoid corruption of the captured value.
@@ -45,7 +44,7 @@ STA is essential for achieving **timing closure** before fabrication.
 
 -----
 
-## 2\. Slack
+## 2 Slack
 
 In **Static Timing Analysis (STA)**,
 
@@ -80,7 +79,7 @@ In **Static Timing Analysis (STA)**,
 
 -----
 
-## 3\. Clock Definitions
+## 3 Clock Definitions
 
 In **Static Timing Analysis (STA)**,
 **“Clock Definitions”** refer to how we **declare and describe the behavior of clock signals** to the STA tool using timing constraints (usually in **SDC** format).
@@ -113,7 +112,7 @@ In **Static Timing Analysis (STA)**,
 
 -----
 
-## 4\. Path-Based Analysis
+## 4 Path-Based Analysis
 
   * STA analyzes timing **between startpoints and endpoints** of paths.
 
