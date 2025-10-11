@@ -2,8 +2,6 @@
 # Table of Contents
 
 
-# Table of Contents
-
 1. [Introduction](#-introduction)
 
 2. [What Post-Synthesis (GLS) Actually Does](#what-post-synthesis-gls-actually-does)
@@ -13,7 +11,7 @@
 4. [High-Level GLS Flow Summary](#-high-level-gls-flow-summary)
 
 5. [Step-by-Step Post-Synthesis Flow](#-step-by-step-post-synthesis-flow)
-   1. [Step 1: Load Design Files into Yosys](#step-1-load-design-files-into-yosys)
+   1. [Step 1: Load Design Files into Yosys](#-step-1-load-design-files-into-yosys)
    2. [Step 2: Load Liberty Timing Libraries](#-step-2-load-liberty-timing-libraries)
    3. [Step 3: Synthesize the Top Module](#-step-3-synthesize-the-top-module)
    4. [Step 4: Map D Flip-Flops to Standard Cells](#-step-4-map-d-flip-flops-to-standard-cells)
@@ -23,7 +21,7 @@
    8. [Step 8: Write the Synthesized Netlist](#-step-8-write-the-synthesized-netlist)
    9. [Step 9: Compile Testbench and Netlist](#-step-9-compile-testbench-and-netlist)
    10. [Step 10: Navigate to Output Directory](#-step-10-navigate-to-output-directory)
-   11. [Step 11: Run the Simulation](#step-11-run-the-simulation)
+   11. [Step 11: Run the Simulation](#-step-11-run-the-simulation)
    12. [Step 12: View Waveforms in GTKWave](#-step-12-view-waveforms-in-gtkwave)
 
 6. [Summary Table](#-summary-table)
@@ -156,13 +154,18 @@ read_liberty -lib /home/jyothirganesh/VLSI/VSDBabySoC/src/lib/sky130_fd_sc_hd__t
 synth -top vsdbabysoc
 ```
 * Which  Converts RTL design to a technology-independent netlist.
-* `-top` specifies the top module to synthesize.
-<img width="1216" height="687" alt="Image" src="https://github.com/user-attachments/assets/5bb5bde4-6b9e-4a1e-9ecb-5953098e3f51" />
-<img width="1216" height="687" alt="Image" src="https://github.com/user-attachments/assets/fb02a8db-2e71-4624-bf0f-45717113dc67" />
-<img width="1209" height="517" alt="Image" src="https://github.com/user-attachments/assets/7eb15608-93fa-4c10-bd9a-50b84e841cd1" />
-<img width="1214" height="297" alt="Image" src="https://github.com/user-attachments/assets/ddf87a82-371f-4e98-af5b-0616b4dfe79e" />
-<img width="1210" height="687" alt="Image" src="https://github.com/user-attachments/assets/2b5d3071-0d39-4dc8-b698-26fec9b34cfb" />
-<img width="1215" height="156" alt="Image" src="https://github.com/user-attachments/assets/abdb4b33-4b54-4cb7-8461-cfd3986fc1d6" />
+* `-top` specifies the top module to synthesize.                                                   <img width="1216" height="687" alt="Screenshot from 2025-10-05 12-02-27" src="https://github.com/user-attachments/assets/56aa040d-49a3-47cd-9dda-c7fc813330e0" />
+
+<img width="1216" height="687" alt="Screenshot from 2025-10-05 12-09-32" src="https://github.com/user-attachments/assets/316ae4af-b5ab-494c-ba8e-a9cf6a7ab4ac" />
+
+<img width="1209" height="517" alt="Screenshot from 2025-10-05 12-10-44" src="https://github.com/user-attachments/assets/c210b6c3-2294-4e19-8733-8915eb0add79" />
+
+<img width="1214" height="297" alt="Screenshot from 2025-10-05 12-10-57" src="https://github.com/user-attachments/assets/87c459b8-927c-4ca7-97e1-443911cf57dc" />
+
+<img width="1210" height="687" alt="Screenshot from 2025-10-05 12-11-36" src="https://github.com/user-attachments/assets/16fe6dbd-b22b-4dce-84bd-4f20f1ff8de1" />
+
+<img width="1215" height="156" alt="Screenshot from 2025-10-05 12-12-45" src="https://github.com/user-attachments/assets/c4b98205-2ee4-4316-9376-18a7519aab5d" />
+
 ---
 
 ### ⚡ Step 4: Map D Flip-Flops to Standard Cells
@@ -172,7 +175,9 @@ synth -top vsdbabysoc
 ```tcl
 dfflibmap -liberty /home/jyothirganesh/VLSI/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 ```
-<img width="1211" height="726" alt="Image" src="https://github.com/user-attachments/assets/231f28b4-f1b4-4ea7-8b77-98a8fa64161b" />
+
+<img width="1211" height="726" alt="Screenshot from 2025-10-05 12-15-41" src="https://github.com/user-attachments/assets/ed9bfc58-3b3b-457b-b7c6-99e62139de0d" />
+
 
 ---
 
@@ -186,10 +191,9 @@ abc -liberty /home/jyothirganesh/VLSI/VSDBabySoC/src/lib/sky130_fd_sc_hd__tt_025
 
 * `opt` — performs cleanup and simple optimizations.
 * `abc` — maps logic to actual cells and optimizes area and timing.
-
-<img width="1213" height="705" alt="Image" src="https://github.com/user-attachments/assets/e6b2492a-0060-4d70-8566-100fb45cbb62" />
-<img width="1223" height="387" alt="Image" src="https://github.com/user-attachments/assets/26febe51-2688-489d-8d4d-8f9727d27710" />
-<img width="1215" height="686" alt="Image" src="https://github.com/user-attachments/assets/20921c57-10c8-4624-95ef-9b292f6c1cf2" />
+<img width="1213" height="705" alt="Screenshot from 2025-10-05 12-20-21" src="https://github.com/user-attachments/assets/978db97b-d45b-4426-bbe4-71bc69a7248a" />
+<img width="1223" height="387" alt="Screenshot from 2025-10-05 12-20-50" src="https://github.com/user-attachments/assets/8d0ca46c-4b7c-4379-a5ef-732d2cd89ea6" />
+<img width="1215" height="686" alt="Screenshot from 2025-10-05 12-23-31" src="https://github.com/user-attachments/assets/8ee76eeb-f500-4a79-9439-69eb02293515" />
 
 ---
 
@@ -208,7 +212,8 @@ rename -enumerate
 * `setundef -zero` — removes undefined states by setting them to 0.
 * `clean -purge` — deletes unused signals.
 * `rename -enumerate` — renames signals systematically.
-<img width="1216" height="328" alt="Screenshot from 2025-10-05 12-25-36" src="https://github.com/user-attachments/assets/7bd3893a-ad25-4182-9e7c-f47aada39fed" />
+<img width="1216" height="328" alt="Screenshot from 2025-10-05 12-25-36" src="https://github.com/user-attachments/assets/efb93011-f870-42d0-bdfb-64421d86dbf6" />
+
 ---
 
 ### 📊 Step 7: Check Statistics
