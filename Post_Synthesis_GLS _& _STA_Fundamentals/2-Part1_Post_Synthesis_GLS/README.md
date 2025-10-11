@@ -1,4 +1,40 @@
 # 🧠 Post-Synthesis Gate Level Simulation (GLS) — VSDBabySoC
+# Table of Contents
+
+
+# Table of Contents
+
+1. [Introduction](#-introduction)
+
+2. [What Post-Synthesis (GLS) Actually Does](#what-post-synthesis-gls-actually-does)
+
+3. [Purpose of GLS](#-purpose-of-gls)
+
+4. [High-Level GLS Flow Summary](#-high-level-gls-flow-summary)
+
+5. [Step-by-Step Post-Synthesis Flow](#-step-by-step-post-synthesis-flow)
+   1. [Step 1: Load Design Files into Yosys](#step-1-load-design-files-into-yosys)
+   2. [Step 2: Load Liberty Timing Libraries](#-step-2-load-liberty-timing-libraries)
+   3. [Step 3: Synthesize the Top Module](#-step-3-synthesize-the-top-module)
+   4. [Step 4: Map D Flip-Flops to Standard Cells](#-step-4-map-d-flip-flops-to-standard-cells)
+   5. [Step 5: Technology Mapping & Optimization](#-step-5-technology-mapping--optimization)
+   6. [Step 6: Final Clean-Up](#-step-6-final-clean-up)
+   7. [Step 7: Check Statistics](#-step-7-check-statistics)
+   8. [Step 8: Write the Synthesized Netlist](#-step-8-write-the-synthesized-netlist)
+   9. [Step 9: Compile Testbench and Netlist](#-step-9-compile-testbench-and-netlist)
+   10. [Step 10: Navigate to Output Directory](#-step-10-navigate-to-output-directory)
+   11. [Step 11: Run the Simulation](#step-11-run-the-simulation)
+   12. [Step 12: View Waveforms in GTKWave](#-step-12-view-waveforms-in-gtkwave)
+
+6. [Summary Table](#-summary-table)
+
+7. [Result Verification](#-result-verification)
+
+8. [Key Takeaways](#-key-takeaways)
+
+9. [Conclusion](#-conclusion)
+
+---
 
 ## 📌 Introduction
 
@@ -67,22 +103,7 @@ The main purpose of **Post-Synthesis Gate-Level Simulation (GLS)** is to **verif
 
 ---
 
-## 📜 Here is the list of steps for the post-Synthesis (GLS) flow.
-
-1. **[Load the design files into Yosys](#step-1-load-design-files-into-yosys)**
-2. **[Load Liberty timing libraries](#step-2-load-liberty-timing-libraries)**
-3. **[Run synthesis for the top module](#step-3-synthesize-the-top-module)**
-4. **[Map D Flip-Flops to standard cells](#step-4-map-d-flip-flops-to-standard-cells)**
-5. **[Perform optimization and technology mapping](#step-5-technology-mapping--optimization)**
-6. **[Final clean-up of the netlist](#step-6-final-clean-up)**
-7. **[Check post-synthesis statistics](#step-7-check-statistics)**
-8. **[Write the synthesized gate-level netlist](#step-8-write-the-synthesized-netlist)**
-9. **[Compile the testbench and synthesized netlist using Icarus Verilog](#step-9-compile-testbench-and-netlist)**
-10. **[Navigate to the simulation output directory](#step-10-navigate-to-output-directory)**
-11. **[Run the post-synthesis simulation](#step-11-run-the-simulation)**
-12. **[View the waveform using GTKWave](#step-12-view-waveforms-in-gtkwave)**
-
----
+## 📜 Here is the  step wise process for the post-Synthesis (GLS) flow.
 
 
 ## 🪜 Step-by-Step Post-Synthesis Flow
@@ -92,7 +113,8 @@ The main purpose of **Post-Synthesis Gate-Level Simulation (GLS)** is to **verif
 ```bash
 yosys
 ```
-<img width="1210" height="672" alt="Image" src="https://github.com/user-attachments/assets/548f1845-32ce-4088-af52-c3b43e94f974" />
+
+<img width="1210" height="672" alt="Screenshot from 2025-10-05 11-32-43" src="https://github.com/user-attachments/assets/d0c0e130-5580-4345-a5a6-cb7a355af4d7" />
 
 Inside the Yosys shell:
 
@@ -107,8 +129,11 @@ read_verilog -I /home/jyothirganesh/VLSI/VSDBabySoC/src/include /home/jyothirgan
 * `read_verilog` loads Verilog RTL source files.
 * `-I` specifies include directories.
 * Load the top-level SoC module (`vsdbabysoc`) and supporting modules (RISC-V core and clock gate).
-<img width="1207" height="596" alt="Image" src="https://github.com/user-attachments/assets/be9a6a8f-5922-43de-a7f7-51ce5895ac5c" />
-<img width="1208" height="350" alt="Image" src="https://github.com/user-attachments/assets/a7eaf70c-7e4c-4005-8657-840a82f74d76" />
+
+
+<img width="1725" height="888" alt="Screenshot from 2025-10-11 15-03-17" src="https://github.com/user-attachments/assets/d122e107-eb90-438f-88d9-85c662d5b717" />
+
+
 ---
 
 ### 📚 Step 2: Load Liberty Timing Libraries
@@ -122,8 +147,8 @@ read_liberty -lib /home/jyothirganesh/VLSI/VSDBabySoC/src/lib/sky130_fd_sc_hd__t
 
 * Liberty files describe the **timing and power** characteristics of standard cells.
 * Yosys uses this information to map RTL logic to physical cells during synthesis.
-<img width="1216" height="486" alt="Image" src="https://github.com/user-attachments/assets/21df72a3-1175-4be9-9407-10bf33a4a805" />
----
+
+<img width="1707" height="376" alt="Screenshot from 2025-10-11 15-05-15" src="https://github.com/user-attachments/assets/abebb06b-66bd-4089-92a6-00f3140556e5" />
 
 ### 🧭 Step 3: Synthesize the Top Module
 
